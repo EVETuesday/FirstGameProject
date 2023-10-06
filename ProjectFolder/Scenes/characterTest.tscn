@@ -93,3 +93,6 @@ position = Vector2(0, -10)
 sprite_frames = SubResource("SpriteFrames_wrcbv")
 animation = &"idle"
 frame_progress = 0.53309
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+one_shot = true
