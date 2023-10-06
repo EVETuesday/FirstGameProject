@@ -80,7 +80,7 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="CharacterBody2D" type="CharacterBody2D"]
+[node name="PlayerTest" type="CharacterBody2D"]
 floor_snap_length = 2.0
 script = ExtResource("1_8kn7j")
 
@@ -96,3 +96,6 @@ frame_progress = 0.53309
 
 [node name="CoyoteJumpTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -45)
