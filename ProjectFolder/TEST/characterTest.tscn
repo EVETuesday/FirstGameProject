@@ -98,4 +98,4 @@ frame_progress = 0.53309
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -45)
+position = Vector2(0, -25)
