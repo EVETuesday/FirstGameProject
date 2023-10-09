@@ -23,7 +23,6 @@ func _ready():
 func apply_gravity(delta):
 		if not is_on_floor():
 			velocity.y += gravity * delta
-			
 #Ф-я уменьшения скорости при отсутствии нажатия клавиш
 func apply_friction(delta):
 	velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
@@ -42,21 +41,34 @@ func movement(delta, direction):
 #Ф-я прыжка
 func handle_jump():
 	if Input.is_action_just_pressed("CharacterJump"):
+		print("1")
 		if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 			is_able_to_double_jump = true
+			is_just_wall_jumped = false
 			velocity.y = JUMP_VELOCITY
+			print("2")
+		if is_just_wall_jumped and not (is_on_floor() or coyote_jump_timer.time_left > 0.0):
+			velocity.y = JUMP_VELOCITY
+			is_just_wall_jumped = false
+			print("3")
+			return
 		if is_able_to_double_jump and not (is_on_floor() or coyote_jump_timer.time_left > 0.0):
 			velocity.y = JUMP_VELOCITY
 			is_able_to_double_jump = false
+			print("4")
 
 #Ф-я прыжка от стены
 func handle_wall_jump():
 	if not is_on_wall_only():
 		return
 	var wall_normal = get_wall_normal()
+	if is_on_wall_only():
+			is_just_wall_jumped=true
 	if Input.is_action_just_pressed("CharacterJump"):
 		velocity.x = wall_normal.x * SPEED * 1.5
 		velocity.y = JUMP_VELOCITY
+		
+
 	
 #Ф-я обновления анимаций
 func update_animations(input_axis):
