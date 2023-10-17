@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://csoq6lx6n87lu"]
+
+[ext_resource type="Texture2D" uid="uid://dj8pne0lwm83a" path="res://TEST/TEST.png" id="1_5n7c7"]
+[ext_resource type="Script" path="res://Scripts/PlayerCharacterBody.gd" id="1_ws66q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nxt6d"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0olvg"]
+atlas = ExtResource("1_5n7c7")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w3qsr"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0olvg")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+floor_snap_length = 3.0
+script = ExtResource("1_ws66q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nxt6d")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_w3qsr")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+wait_time = 0.15
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = -9.0
+text = "ТЕСТ"
